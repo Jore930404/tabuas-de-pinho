@@ -1,0 +1,87 @@
+---
+import { site, whatsappLink, type Content, type Lang } from '../data/content';
+
+interface Props {
+  lang: Lang;
+  t: Content;
+}
+
+const { lang, t } = Astro.props;
+const home = lang === 'pt' ? '/' : '/es/';
+const quoteHref = whatsappLink(t.contact.whatsappMessage);
+---
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href={home} aria-label={site.name}>
+      <span class="brand-mark">
+        <img src="/favicon.svg" alt="" width="48" height="48" />
+      </span>
+      <span class="brand-text">
+        <span class="brand-name">TÁBUAS DE PINHO</span>
+        <span class="brand-sub">CARPINTARIA &amp; DESIGN</span>
+      </span>
+    </a>
+
+    <nav class="nav" id="site-nav" aria-label={t.footer.navTitle}>
+      <a href="#servicos">{t.nav.services}</a>
+      <a href="#projetos">{t.nav.gallery}</a>
+      <a href="#como-funciona">{t.nav.process}</a>
+      <a href="#atelie">{t.nav.about}</a>
+      <a href="#duvidas">{t.nav.faq}</a>
+      <a href="#contato">{t.nav.contact}</a>
+    </nav>
+
+    <div class="header-actions">
+      <div class="lang-switch" aria-label={t.a11y.theme}>
+        <a href="/" aria-current={lang === 'pt' ? 'true' : undefined}>PT</a>
+        <a href="/es/" aria-current={lang === 'es' ? 'true' : undefined}>ES</a>
+      </div>
+      <a class="btn btn-primary btn-sm" href={quoteHref} target="_blank" rel="noopener">
+        {t.ctaQuote}
+      </a>
+      <button
+        class="nav-toggle"
+        type="button"
+        aria-controls="site-nav"
+        aria-expanded="false"
+        aria-label={t.a11y.menu}
+        data-label-open={t.a11y.menu}
+        data-label-close={t.a11y.closeMenu}
+      >
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+          <path d="M4 7h16M4 12h16M4 17h16" stroke-linecap="round" />
+        </svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<script>
+  const header = document.querySelector<HTMLElement>('.site-header');
+  const toggle = document.querySelector<HTMLButtonElement>('.nav-toggle');
+  const nav = document.querySelector<HTMLElement>('.nav');
+
+  const onScroll = () => header?.classList.toggle('is-scrolled', window.scrollY > 8);
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
+
+  if (toggle && nav) {
+    toggle.addEventListener('click', () => {
+      const open = nav.dataset.open === 'true';
+      nav.dataset.open = String(!open);
+      toggle.setAttribute('aria-expanded', String(!open));
+      toggle.setAttribute(
+        'aria-label',
+        open ? toggle.dataset.labelOpen ?? '' : toggle.dataset.labelClose ?? '',
+      );
+    });
+
+    nav.addEventListener('click', (event) => {
+      if ((event.target as HTMLElement).closest('a')) {
+        nav.dataset.open = 'false';
+        toggle.setAttribute('aria-expanded', 'false');
+      }
+    });
+  }
+</script>

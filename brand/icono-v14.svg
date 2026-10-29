@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1200" viewBox="0 0 1200 1200" role="img" aria-labelledby="t d">
+  <title id="t">Tábuas de Pinho — icono de la casa de tablas</title>
+  <desc id="d">Casa de pino con techo verde, ventana de cuatro vidrios, tablas de madera maciza y dos pinos laterales.</desc>
+  <rect width="1200" height="1200" fill="#F7F0E2"/>
+  <g fill="#2F6238">
+    <polygon points="250,420 292,543 270,543 312,666 286,666 345,798 155,798 214,666 188,666 230,543 208,543"/>
+    <polygon points="950,420 992,543 970,543 1012,666 986,666 1045,798 855,798 914,666 888,666 930,543 908,543"/>
+  </g>
+  <rect x="239" y="789" width="22" height="66" fill="#8C5A2B"/>
+  <rect x="939" y="789" width="22" height="66" fill="#8C5A2B"/>
+  <polygon points="600,370 270,620 930,620" fill="#1F4527"/>
+  <rect x="330" y="620" width="540" height="70" fill="#D9A86C"/>
+  <rect x="340" y="700" width="520" height="70" fill="#C08552"/>
+  <rect x="350" y="780" width="500" height="70" fill="#A96B37"/>
+  <g stroke="#4E3214" stroke-opacity="0.14" stroke-width="2" stroke-linecap="round">
+    <line x1="354" y1="650" x2="846" y2="644"/>
+    <line x1="354" y1="672" x2="846" y2="666"/>
+    <line x1="364" y1="730" x2="836" y2="724"/>
+    <line x1="364" y1="752" x2="836" y2="746"/>
+    <line x1="374" y1="810" x2="826" y2="804"/>
+    <line x1="374" y1="832" x2="826" y2="826"/>
+  </g>
+  <rect x="550" y="640" width="100" height="100" fill="#F7F0E2" stroke="#1F4527" stroke-width="12"/>
+  <line x1="600" y1="640" x2="600" y2="740" stroke="#1F4527" stroke-width="10"/>
+  <line x1="550" y1="690" x2="650" y2="690" stroke="#1F4527" stroke-width="10"/>
+</svg>

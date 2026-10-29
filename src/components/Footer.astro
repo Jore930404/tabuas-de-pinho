@@ -1,0 +1,71 @@
+---
+import { site, whatsappLink, type Content, type Lang } from '../data/content';
+
+interface Props {
+  lang: Lang;
+  t: Content;
+}
+
+const { lang, t } = Astro.props;
+const home = lang === 'pt' ? '/' : '/es/';
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a class="footer-logo" href={home} aria-label={site.name}>
+          <img src="/favicon.svg" alt="" width="54" height="54" loading="lazy" />
+          <span>
+            <span class="footer-name">TÁBUAS DE PINHO</span><br />
+            <span class="footer-sub">CARPINTARIA &amp; DESIGN</span>
+          </span>
+        </a>
+        <p>{t.footer.tagline}</p>
+      </div>
+
+      <div class="footer-col">
+        <h3>{t.footer.navTitle}</h3>
+        <ul>
+          <li><a href="#servicos">{t.nav.services}</a></li>
+          <li><a href="#projetos">{t.nav.gallery}</a></li>
+          <li><a href="#como-funciona">{t.nav.process}</a></li>
+          <li><a href="#atelie">{t.nav.about}</a></li>
+          <li><a href="#contato">{t.nav.contact}</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h3>{t.footer.contactTitle}</h3>
+        <ul>
+          <li>
+            <a href={`tel:+${site.phoneRaw}`}>{site.phoneDisplay}</a>
+          </li>
+          <li>{site.address.street}</li>
+          <li>{site.address.district} · {site.address.city} – {site.address.region}</li>
+          <li>CEP {site.address.postal}</li>
+          <li>
+            <a href={site.mapsUrl} target="_blank" rel="noopener">{t.contact.mapCta}</a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h3>{t.footer.socialTitle}</h3>
+        <ul>
+          <li><a href={site.facebook} target="_blank" rel="noopener">Facebook</a></li>
+          <li><a href={site.tiktok} target="_blank" rel="noopener">TikTok</a></li>
+          <li>
+            <a href={whatsappLink(t.contact.whatsappMessage)} target="_blank" rel="noopener">WhatsApp</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span>© {year} {site.name}. {t.footer.rights}</span>
+      <span>Ponta Grossa – PR</span>
+    </div>
+  </div>
+</footer>

@@ -1,0 +1,12 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Landing from '../../components/Landing.astro';
+import { getContent } from '../../data/content';
+
+const lang = 'es' as const;
+const t = getContent(lang);
+---
+
+<BaseLayout lang={lang} path="/es/" alternatePath="/">
+  <Landing lang={lang} t={t} />
+</BaseLayout>

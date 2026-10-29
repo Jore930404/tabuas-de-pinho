@@ -1,0 +1,92 @@
+[
+  {
+    "slug": "aparador",
+    "src": "/img/aparador-1280.jpg",
+    "srcset": "/img/aparador-640.jpg 640w, /img/aparador-1280.jpg 1040w",
+    "webp": "/img/aparador-1280.webp",
+    "webpset": "/img/aparador-640.webp 640w, /img/aparador-1280.webp 1040w",
+    "width": 1040,
+    "height": 468,
+    "ratio": 2.2222
+  },
+  {
+    "slug": "cama",
+    "src": "/img/cama-640.jpg",
+    "srcset": "/img/cama-640.jpg 540w",
+    "webp": "/img/cama-640.webp",
+    "webpset": "/img/cama-640.webp 540w",
+    "width": 540,
+    "height": 452,
+    "ratio": 1.1947
+  },
+  {
+    "slug": "bar",
+    "src": "/img/bar-1280.jpg",
+    "srcset": "/img/bar-640.jpg 288w, /img/bar-1280.jpg 468w",
+    "webp": "/img/bar-1280.webp",
+    "webpset": "/img/bar-640.webp 288w, /img/bar-1280.webp 468w",
+    "width": 468,
+    "height": 1040,
+    "ratio": 0.45
+  },
+  {
+    "slug": "mesa",
+    "src": "/img/mesa-1280.jpg",
+    "srcset": "/img/mesa-640.jpg 360w, /img/mesa-1280.jpg 714w",
+    "webp": "/img/mesa-1280.webp",
+    "webpset": "/img/mesa-640.webp 360w, /img/mesa-1280.webp 714w",
+    "width": 714,
+    "height": 1271,
+    "ratio": 0.5618
+  },
+  {
+    "slug": "poltronas",
+    "src": "/img/poltronas-640.jpg",
+    "srcset": "/img/poltronas-640.jpg 540w",
+    "webp": "/img/poltronas-640.webp",
+    "webpset": "/img/poltronas-640.webp 540w",
+    "width": 540,
+    "height": 406,
+    "ratio": 1.33
+  },
+  {
+    "slug": "painel",
+    "src": "/img/painel-1280.jpg",
+    "srcset": "/img/painel-640.jpg 480w, /img/painel-1280.jpg 540w",
+    "webp": "/img/painel-1280.webp",
+    "webpset": "/img/painel-640.webp 480w, /img/painel-1280.webp 540w",
+    "width": 540,
+    "height": 720,
+    "ratio": 0.75
+  },
+  {
+    "slug": "carrinho",
+    "src": "/img/carrinho-1280.jpg",
+    "srcset": "/img/carrinho-640.jpg 360w, /img/carrinho-1280.jpg 714w",
+    "webp": "/img/carrinho-1280.webp",
+    "webpset": "/img/carrinho-640.webp 360w, /img/carrinho-1280.webp 714w",
+    "width": 714,
+    "height": 1271,
+    "ratio": 0.5618
+  },
+  {
+    "slug": "balcao",
+    "src": "/img/balcao-1280.jpg",
+    "srcset": "/img/balcao-640.jpg 288w, /img/balcao-1280.jpg 468w",
+    "webp": "/img/balcao-1280.webp",
+    "webpset": "/img/balcao-640.webp 288w, /img/balcao-1280.webp 468w",
+    "width": 468,
+    "height": 1040,
+    "ratio": 0.45
+  },
+  {
+    "slug": "estante",
+    "src": "/img/estante-1280.jpg",
+    "srcset": "/img/estante-640.jpg 640w, /img/estante-1280.jpg 1040w",
+    "webp": "/img/estante-1280.webp",
+    "webpset": "/img/estante-640.webp 640w, /img/estante-1280.webp 1040w",
+    "width": 1040,
+    "height": 780,
+    "ratio": 1.3333
+  }
+]

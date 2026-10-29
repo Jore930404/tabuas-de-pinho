@@ -1,0 +1,406 @@
+---
+import Icon from './Icon.astro';
+import photosData from '../data/photos.json';
+import { site, whatsappLink, type Content, type Lang } from '../data/content';
+
+interface Props {
+  lang: Lang;
+  t: Content;
+}
+
+const { lang, t } = Astro.props;
+
+type Photo = (typeof photosData)[number];
+const photos = Object.fromEntries(photosData.map((p) => [p.slug, p])) as Record<string, Photo>;
+
+const heroPhoto = photos['aparador'];
+const aboutPhoto = photos['bar'];
+const galleryItems = t.gallery.items
+  .map((item) => ({ ...item, photo: photos[item.slug] }))
+  .filter((item) => Boolean(item.photo));
+
+const quoteHref = whatsappLink(t.contact.whatsappMessage);
+const visitMessage =
+  lang === 'pt'
+    ? 'Olá! Gostaria de agendar uma visita ao ateliê.'
+    : '¡Hola! Quisiera agendar una visita al taller.';
+const galleryMessage =
+  lang === 'pt'
+    ? 'Olá! Vi os projetos no site e gostaria de um orçamento.'
+    : '¡Hola! Vi los proyectos del sitio y quisiera un presupuesto.';
+
+const heroSizes = '(max-width: 1020px) 92vw, 44vw';
+const aboutSizes = '(max-width: 1020px) 90vw, 38vw';
+const gallerySizes = '(max-width: 520px) 92vw, (max-width: 900px) 45vw, 340px';
+---
+
+<main id="conteudo">
+  <!-- HERO -->
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="container hero-grid">
+      <div class="hero-copy">
+        <p class="eyebrow">{t.hero.eyebrow}</p>
+        <h1 id="hero-title">
+          {t.hero.titleLead} <em>{t.hero.titleAccent}</em>
+        </h1>
+        <p class="hero-lead">{t.hero.lead}</p>
+
+        <div class="hero-actions">
+          <a class="btn btn-primary" href={quoteHref} target="_blank" rel="noopener">
+            <Icon name="whatsapp" />
+            {t.hero.primary}
+          </a>
+          <a class="btn btn-ghost" href="#projetos">{t.hero.secondary}</a>
+        </div>
+
+        <p class="hero-note">{t.hero.note}</p>
+
+        <div class="hero-stats">
+          {t.hero.stats.map((stat) => (
+            <div class="stat">
+              <span class="stat-value">{stat.value}</span>
+              <span class="stat-label">{stat.label}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <figure class="hero-media">
+        <div class="hero-card">
+          <picture>
+            <source type="image/webp" srcset={heroPhoto.webpset} sizes={heroSizes} />
+            <img
+              src={heroPhoto.src}
+              srcset={heroPhoto.srcset}
+              sizes={heroSizes}
+              width={heroPhoto.width}
+              height={heroPhoto.height}
+              alt={t.hero.imageAlt}
+              fetchpriority="high"
+              decoding="async"
+            />
+          </picture>
+          <span class="hero-badge">{t.hero.badge}</span>
+        </div>
+      </figure>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="servicos" class="section services" aria-labelledby="services-title">
+    <div class="container">
+      <div class="section-head reveal">
+        <p class="eyebrow">{t.services.eyebrow}</p>
+        <h2 id="services-title">{t.services.title}</h2>
+      </div>
+
+      <div class="cards">
+        {t.services.items.map((service) => (
+          <article class="card reveal">
+            <div class="card-icon">
+              <Icon name={service.icon as 'wardrobe' | 'kitchen' | 'custom'} size={26} />
+            </div>
+            <h3>{service.title}</h3>
+            <p>{service.text}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <section id="projetos" class="section" aria-labelledby="gallery-title">
+    <div class="container">
+      <div class="section-head gallery-head reveal">
+        <div>
+          <p class="eyebrow">{t.gallery.eyebrow}</p>
+          <h2 id="gallery-title">{t.gallery.title}</h2>
+          <p class="lead">{t.gallery.lead}</p>
+        </div>
+        <a class="btn btn-ghost" href={whatsappLink(galleryMessage)} target="_blank" rel="noopener">
+          {t.gallery.cta}
+          <Icon name="arrow" size={17} />
+        </a>
+      </div>
+
+      <div class="masonry">
+        {galleryItems.map((item) => (
+          <button
+            class="piece reveal"
+            type="button"
+            data-full={item.photo.src}
+            data-caption={item.caption}
+            aria-label={`${t.gallery.zoom}: ${item.caption}`}
+          >
+            <picture>
+              <source type="image/webp" srcset={item.photo.webpset} sizes={gallerySizes} />
+              <img
+                src={item.photo.src}
+                srcset={item.photo.srcset}
+                sizes={gallerySizes}
+                width={item.photo.width}
+                height={item.photo.height}
+                alt={item.caption}
+                loading="lazy"
+                decoding="async"
+              />
+            </picture>
+            <span class="piece-caption">
+              <span>{item.caption}</span>
+              <Icon name="expand" size={18} />
+            </span>
+          </button>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section id="como-funciona" class="section process" aria-labelledby="process-title">
+    <div class="container">
+      <div class="section-head reveal">
+        <p class="eyebrow">{t.process.eyebrow}</p>
+        <h2 id="process-title">{t.process.title}</h2>
+      </div>
+
+      <ol class="steps">
+        {t.process.steps.map((step, index) => (
+          <li class="step reveal">
+            <span class="step-num">{String(index + 1).padStart(2, '0')}</span>
+            <h3>{step.title}</h3>
+            <p>{step.text}</p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="atelie" class="section" aria-labelledby="about-title">
+    <div class="container about-grid">
+      <figure class="about-media reveal">
+        <div class="about-card">
+          <picture>
+            <source type="image/webp" srcset={aboutPhoto.webpset} sizes={aboutSizes} />
+            <img
+              src={aboutPhoto.src}
+              srcset={aboutPhoto.srcset}
+              sizes={aboutSizes}
+              width={aboutPhoto.width}
+              height={aboutPhoto.height}
+              alt={t.about.imageAlt}
+              loading="lazy"
+              decoding="async"
+            />
+          </picture>
+        </div>
+        <span class="about-tag">Neves · Ponta Grossa</span>
+      </figure>
+
+      <div class="about-copy reveal">
+        <p class="eyebrow">{t.about.eyebrow}</p>
+        <h2 id="about-title">{t.about.title}</h2>
+        {t.about.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
+
+        <div class="facts">
+          {t.about.facts.map((fact) => (
+            <div class="fact">
+              <span class="fact-value">{fact.value}</span>
+              <span class="fact-label">{fact.label}</span>
+            </div>
+          ))}
+        </div>
+
+        <a class="text-link" href={whatsappLink(visitMessage)} target="_blank" rel="noopener">
+          {t.about.cta}
+          <Icon name="arrow" size={17} />
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- MATERIALS -->
+  <section class="materials" aria-label={t.materials.title}>
+    <div class="container materials-inner">
+      <p class="materials-title">{t.materials.title}</p>
+      <ul>
+        {t.materials.items.map((item) => <li>{item}</li>)}
+      </ul>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="duvidas" class="section" aria-labelledby="faq-title">
+    <div class="container faq-grid">
+      <div class="section-head reveal">
+        <p class="eyebrow">{t.faq.eyebrow}</p>
+        <h2 id="faq-title">{t.faq.title}</h2>
+      </div>
+
+      <div class="faq-list reveal">
+        {t.faq.items.map((item, index) => (
+          <details class="faq-item" open={index === 0}>
+            <summary>{item.q}</summary>
+            <p>{item.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contato" class="section contact" aria-labelledby="contact-title">
+    <div class="container contact-grid">
+      <div class="form-card reveal">
+        <p class="eyebrow">{t.contact.eyebrow}</p>
+        <h2 id="contact-title">{t.contact.title}</h2>
+        <p class="lead">{t.contact.lead}</p>
+
+        <form id="quote-form" data-phone={site.phoneRaw}>
+          <div class="field-row">
+            <div class="field">
+              <label for="name">{t.contact.form.name}</label>
+              <input id="name" name="name" type="text" autocomplete="name" required />
+            </div>
+            <div class="field">
+              <label for="phone">{t.contact.form.phone}</label>
+              <input id="phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" required />
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="type">{t.contact.form.type}</label>
+            <select id="type" name="type" required>
+              <option value="" disabled selected>{t.contact.form.defaultOption}</option>
+              {t.contact.form.options.map((option) => <option value={option}>{option}</option>)}
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="message">{t.contact.form.message}</label>
+            <textarea id="message" name="message" placeholder={t.contact.form.messagePlaceholder}></textarea>
+          </div>
+
+          <button class="btn btn-primary" type="submit">
+            <Icon name="whatsapp" />
+            {t.contact.form.submit}
+          </button>
+          <p class="form-note">{t.contact.form.note}</p>
+        </form>
+      </div>
+
+      <aside class="contact-info reveal">
+        <div class="info-block">
+          <p class="info-label">WhatsApp</p>
+          <a class="big-link" href={quoteHref} target="_blank" rel="noopener">{site.phoneDisplay}</a>
+          <p class="info-note">{t.contact.direct}</p>
+        </div>
+
+        <div class="info-block">
+          <p class="info-label">{t.contact.addressTitle}</p>
+          <address>
+            {site.address.street}<br />
+            {site.address.district} · {site.address.city} – {site.address.region}<br />
+            CEP {site.address.postal}
+          </address>
+          <p class="info-note">{t.contact.addressNote}</p>
+          <a class="text-link" href={site.mapsUrl} target="_blank" rel="noopener">
+            {t.contact.mapCta}
+            <Icon name="arrow" size={17} />
+          </a>
+        </div>
+
+        <div class="info-block">
+          <p class="info-label">{t.contact.socialTitle}</p>
+          <div class="socials">
+            <a class="social-link" href={site.facebook} target="_blank" rel="noopener">Facebook</a>
+            <a class="social-link" href={site.tiktok} target="_blank" rel="noopener">TikTok</a>
+            <a class="social-link" href={quoteHref} target="_blank" rel="noopener">WhatsApp</a>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </section>
+</main>
+
+<dialog class="lightbox" id="lightbox" aria-label={t.gallery.title}>
+  <button class="lightbox-close" type="button" aria-label={t.gallery.close}>×</button>
+  <img id="lightbox-img" alt="" />
+  <p class="lightbox-caption" id="lightbox-caption"></p>
+</dialog>
+
+<script>
+  const dialog = document.getElementById('lightbox') as HTMLDialogElement | null;
+  const lightboxImg = document.getElementById('lightbox-img') as HTMLImageElement | null;
+  const lightboxCaption = document.getElementById('lightbox-caption');
+  const closeButton = document.querySelector<HTMLButtonElement>('.lightbox-close');
+
+  const closeLightbox = () => {
+    dialog?.close();
+    document.body.style.overflow = '';
+  };
+
+  document.querySelectorAll<HTMLButtonElement>('.piece').forEach((piece) => {
+    piece.addEventListener('click', () => {
+      if (!dialog || !lightboxImg) return;
+      const caption = piece.dataset.caption ?? '';
+      lightboxImg.src = piece.dataset.full ?? '';
+      lightboxImg.alt = caption;
+      if (lightboxCaption) lightboxCaption.textContent = caption;
+      dialog.showModal();
+      document.body.style.overflow = 'hidden';
+    });
+  });
+
+  closeButton?.addEventListener('click', closeLightbox);
+
+  dialog?.addEventListener('click', (event) => {
+    if (event.target === dialog) closeLightbox();
+  });
+
+  dialog?.addEventListener('close', () => {
+    document.body.style.overflow = '';
+  });
+
+  const form = document.getElementById('quote-form') as HTMLFormElement | null;
+  form?.addEventListener('submit', (event) => {
+    event.preventDefault();
+    const data = new FormData(form);
+    const name = String(data.get('name') ?? '').trim();
+    const phone = String(data.get('phone') ?? '').trim();
+    const type = String(data.get('type') ?? '').trim();
+    const message = String(data.get('message') ?? '').trim();
+    const isSpanish = document.documentElement.lang.startsWith('es');
+    const fallbackType = isSpanish ? 'un mueble a medida' : 'um móvel sob medida';
+    const detail = type ? type.toLowerCase() : fallbackType;
+    const text = isSpanish
+      ? `¡Hola! Soy ${name}. Mi WhatsApp es ${phone}. Quisiera un presupuesto de ${detail}.${message ? ' ' + message : ''}`
+      : `Olá! Meu nome é ${name}. Meu WhatsApp é ${phone}. Gostaria de um orçamento de ${detail}.${message ? ' ' + message : ''}`;
+
+    if (!name || !phone) {
+      form.reportValidity();
+      return;
+    }
+
+    const number = form.dataset.phone ?? '';
+    window.open(`https://wa.me/${number}?text=${encodeURIComponent(text)}`, '_blank', 'noopener');
+  });
+
+  const revealElements = document.querySelectorAll<HTMLElement>('.reveal');
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.12, rootMargin: '0px 0px -6% 0px' },
+    );
+    revealElements.forEach((element) => observer.observe(element));
+  } else {
+    revealElements.forEach((element) => element.classList.add('is-visible'));
+  }
+</script>

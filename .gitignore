@@ -1,0 +1,17 @@
+node_modules/
+dist/
+.astro/
+.pnpm-store/
+.tools/
+.shots/
+.edge-profile/
+.env
+.env.*
+!.env.example
+.vscode/
+.idea/
+dev-test.log
+dev-test.err
+*.log
+.DS_Store
+Thumbs.db

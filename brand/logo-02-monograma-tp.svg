@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800" role="img" aria-labelledby="title desc">
+  <title id="title">Tábuas de Pinho — propuesta 2: Monograma TP</title>
+  <desc id="desc">Sello cuadrado verde con las iniciales TP en crema, pensado para grabar, sellar y usar como avatar.</desc>
+  <rect width="1200" height="800" fill="#F7F0E2"/>
+  <rect x="470" y="100" width="260" height="260" rx="30" fill="#1F4527"/>
+  <rect x="486" y="116" width="228" height="228" rx="20" fill="none" stroke="#C9A46B" stroke-width="2" opacity="0.9"/>
+  <text x="600" y="286" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="150" font-weight="bold" fill="#F7F0E2">TP</text>
+  <text x="600" y="330" text-anchor="middle" font-family="'Trebuchet MS', Verdana, sans-serif" font-size="13" font-weight="bold" letter-spacing="4" fill="#C9A46B">10 ANOS DE OFÍCIO</text>
+  <text x="600" y="520" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="58" font-weight="bold" fill="#22301F">TÁBUAS DE PINHO</text>
+  <text x="600" y="566" text-anchor="middle" font-family="'Trebuchet MS', Verdana, sans-serif" font-size="21" font-weight="bold" letter-spacing="8" fill="#2E6B3A">CARPINTARIA &amp; DESIGN</text>
+  <text x="600" y="616" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-style="italic" font-size="21" fill="#7A6548">Naturais, resistentes, feitos para durar.</text>
+</svg>
