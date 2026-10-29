@@ -1021,13 +1021,20 @@ em {
 .field textarea {
   width: 100%;
   padding: 13px 15px;
-  border: 1px solid var(--line-strong);
+  border: 1px solid #9a7f55;
   border-radius: 12px;
   background: var(--white);
   color: var(--ink);
+  caret-color: var(--green);
   font: inherit;
   font-size: 0.95rem;
   transition: border-color 0.2s var(--ease), box-shadow 0.2s var(--ease);
+}
+
+.field input::placeholder,
+.field textarea::placeholder {
+  color: #6b5b45;
+  opacity: 1;
 }
 
 .field textarea {
@@ -1038,9 +1045,9 @@ em {
 .field input:focus,
 .field select:focus,
 .field textarea:focus {
-  outline: none;
-  border-color: var(--green-2);
-  box-shadow: 0 0 0 3px rgba(46, 107, 58, 0.14);
+  outline: 2px solid var(--green);
+  outline-offset: 2px;
+  border-color: var(--green);
 }
 
 .field-row {
