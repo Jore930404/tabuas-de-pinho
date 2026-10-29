@@ -1025,7 +1025,7 @@ em {
   border-radius: 12px;
   background: var(--white);
   color: var(--ink);
-  caret-color: #1f4527;
+  caret-color: #000 !important;
   font: inherit;
   font-size: 0.95rem;
   transition: border-color 0.2s var(--ease), box-shadow 0.2s var(--ease);
@@ -1035,6 +1035,12 @@ em {
 .field textarea::placeholder {
   color: #6b5b45;
   opacity: 1;
+}
+
+.field input:focus::placeholder,
+.field textarea:focus::placeholder {
+  color: transparent;
+  opacity: 0;
 }
 
 .field textarea {
