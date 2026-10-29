@@ -1174,12 +1174,12 @@ em {
   font-size: 0.58rem;
   letter-spacing: 0.24em;
   text-transform: uppercase;
-  color: rgba(247, 240, 226, 0.62);
+  color: rgba(247, 240, 226, 0.74);
 }
 
 .footer-brand p {
   font-size: 0.9rem;
-  color: rgba(247, 240, 226, 0.7);
+  color: rgba(247, 240, 226, 0.8);
 }
 
 .footer-col h3 {
@@ -1204,7 +1204,7 @@ em {
 .footer-col a,
 .footer-col li {
   font-size: 0.9rem;
-  color: rgba(247, 240, 226, 0.78);
+  color: rgba(247, 240, 226, 0.86);
 }
 
 .footer-col a:hover {
@@ -1222,7 +1222,7 @@ em {
   padding-block: 22px;
   border-top: 1px solid rgba(247, 240, 226, 0.14);
   font-size: 0.78rem;
-  color: rgba(247, 240, 226, 0.58);
+  color: rgba(247, 240, 226, 0.74);
 }
 
 /* ---------- floating whatsapp ---------- */
