@@ -1037,6 +1037,11 @@ em {
   opacity: 1;
 }
 
+.field input,
+.field textarea {
+  cursor: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAcElEQVR4nGNgGAUjHTDik/z+4dF/aljCKSCH0x4WQpo1Ql0psvzG6t145ZkYBhgwDeo0gC9toEcNKKjxxfWgDQGmUQcwjEbBAAOmUQcwjEbBAAOmUQcwjPQoYCS13icVEGonMDEMMGBiGOnN8lEwCgCh9RkvvRnr3wAAAABJRU5ErkJggg==") 16 16, text;
+}
+
 .field input:focus::placeholder,
 .field textarea:focus::placeholder {
   color: transparent;
