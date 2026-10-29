@@ -12,11 +12,13 @@ interface Props {
 
 const { lang, path, alternatePath } = Astro.props;
 const t = getContent(lang);
-const base = Astro.site ?? new URL('https://tabuasdepinho.com.br');
+const base = Astro.site ?? new URL('https://tabuas-de-pinho.pages.dev');
 const canonical = new URL(path, base).href;
 const alternate = new URL(alternatePath, base).href;
 const ptHref = new URL('/', base).href;
 const ogImage = new URL(site.ogImage, base).href;
+const fontHref =
+  'https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..600;1,9..144,400..600&family=Inter:wght@400;500;600&display=swap';
 
 const schema = {
   '@context': 'https://schema.org',
@@ -78,9 +80,17 @@ const schema = {
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preload" as="style" href={fontHref} />
+    <link rel="stylesheet" href={fontHref} media="print" onload="this.media='all'" />
+    <noscript><link rel="stylesheet" href={fontHref} /></noscript>
     <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..600;1,9..144,400..600&family=Inter:wght@400;500;600&display=swap"
+      rel="preload"
+      as="image"
+      type="image/webp"
+      href="/img/aparador-1280.webp"
+      imagesrcset="/img/aparador-640.webp 640w, /img/aparador-1280.webp 1040w"
+      imagesizes="(max-width: 1020px) 92vw, 44vw"
+      fetchpriority="high"
     />
 
     <script is:inline>

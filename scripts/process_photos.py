@@ -60,13 +60,13 @@ for slug, sha in SRC.items():
     small = resize_to(img, 640)
     big = resize_to(img, 1280)
 
-    small.save(OUT / f"{slug}-640.jpg", "JPEG", quality=80, optimize=True, progressive=True)
-    small.save(OUT / f"{slug}-640.webp", "WEBP", quality=78, method=6)
+    small.save(OUT / f"{slug}-640.jpg", "JPEG", quality=76, optimize=True, progressive=True)
+    small.save(OUT / f"{slug}-640.webp", "WEBP", quality=74, method=6)
 
     has_big = big.width > small.width
     if has_big:
-        big.save(OUT / f"{slug}-1280.jpg", "JPEG", quality=82, optimize=True, progressive=True)
-        big.save(OUT / f"{slug}-1280.webp", "WEBP", quality=80, method=6)
+        big.save(OUT / f"{slug}-1280.jpg", "JPEG", quality=80, optimize=True, progressive=True)
+        big.save(OUT / f"{slug}-1280.webp", "WEBP", quality=78, method=6)
 
     main = big if has_big else small
     src_w = main.width
