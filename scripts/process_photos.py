@@ -1,10 +1,10 @@
 import json
 import shutil
 from pathlib import Path
-from PIL import Image, ImageDraw, ImageFont
+from PIL import Image, ImageDraw, ImageEnhance, ImageFilter, ImageFont
 
 OBJ = Path(r"C:\Users\Desktop\.dsh\attachments\v1\objects")
-OUT = Path(r"C:\Proyectos\Landing-Page\public\img")
+OUT = Path(r"C:\Proyectos\Landing-Page\tabuas-de-pinho\public\img")
 OUT.mkdir(parents=True, exist_ok=True)
 
 SRC = {
@@ -17,12 +17,14 @@ SRC = {
     "carrinho": "8c823315aedace96eb5f74c3e60c4f9a84fe7e75bd1ce6e302d1852d354464f4",
     "balcao": "353d1598851ba920138cd7341400cff8b610eff299b710eaf17c051f26046c82",
     "estante": "33250695d2e251018df891161f2fcdeae8bccf512b0e2d165a048d3338ac1246",
+    "jonnatan": "eadb1f2a68fd1c7408576288be0a7e3d866d294d9b942e517c4fd69fb5a2362c",
 }
 
 # Algunas capturas de WhatsApp traen barras negras arriba y abajo.
 CROPS = {
     "mesa": (0, 164, 714, 1435),
     "carrinho": (0, 164, 714, 1435),
+    "jonnatan": (0, 0, 720, 710),
 }
 
 
@@ -48,6 +50,12 @@ for slug, sha in SRC.items():
     if slug in CROPS:
         img = img.crop(CROPS[slug])
     img = img.convert("RGB")
+
+    if slug == "jonnatan":
+        img = ImageEnhance.Brightness(img).enhance(1.03)
+        img = ImageEnhance.Contrast(img).enhance(1.07)
+        img = ImageEnhance.Color(img).enhance(1.04)
+        img = img.filter(ImageFilter.UnsharpMask(radius=1.2, percent=55, threshold=3))
 
     small = resize_to(img, 640)
     big = resize_to(img, 1280)
@@ -81,8 +89,8 @@ for slug, sha in SRC.items():
         "ratio": round(src_w / main.height, 4),
     })
 
-Path(r"C:\Proyectos\Landing-Page\src\data").mkdir(parents=True, exist_ok=True)
-Path(r"C:\Proyectos\Landing-Page\src\data\photos.json").write_text(
+Path(r"C:\Proyectos\Landing-Page\tabuas-de-pinho\src\data").mkdir(parents=True, exist_ok=True)
+Path(r"C:\Proyectos\Landing-Page\tabuas-de-pinho\src\data\photos.json").write_text(
     json.dumps(photos, ensure_ascii=False, indent=2), encoding="utf-8"
 )
 
@@ -95,7 +103,7 @@ muted = "#6B5B45"
 og = Image.new("RGB", (1200, 630), cream)
 d = ImageDraw.Draw(og)
 
-icon = Image.open(r"C:\Proyectos\Landing-Page\brand\icono-v14.png").convert("RGB")
+icon = Image.open(r"C:\Proyectos\Landing-Page\tabuas-de-pinho\brand\icono-v14.png").convert("RGB")
 icon = icon.resize((360, 360), Image.LANCZOS)
 og.paste(icon, (70, 135))
 d.rectangle((70, 135, 430, 495), outline="#E2D3B6", width=3)
@@ -111,14 +119,14 @@ d.line((482, 345, 1120, 345), fill=wood, width=3)
 d.text((482, 380), "Móveis sob medida em pino maciço", font=f_tag, fill=muted)
 d.text((482, 425), "Ponta Grossa · Paraná", font=f_small, fill=muted)
 
-og.save(r"C:\Proyectos\Landing-Page\public\og.jpg", "JPEG", quality=88, optimize=True)
+og.save(r"C:\Proyectos\Landing-Page\tabuas-de-pinho\public\og.jpg", "JPEG", quality=88, optimize=True)
 
 shutil.copyfile(
-    r"C:\Proyectos\Landing-Page\brand\icono-v14.svg",
-    r"C:\Proyectos\Landing-Page\public\favicon.svg",
+    r"C:\Proyectos\Landing-Page\tabuas-de-pinho\brand\icono-v14.svg",
+    r"C:\Proyectos\Landing-Page\tabuas-de-pinho\public\favicon.svg",
 )
 icon.resize((180, 180), Image.LANCZOS).save(
-    r"C:\Proyectos\Landing-Page\public\apple-touch-icon.png", "PNG"
+    r"C:\Proyectos\Landing-Page\tabuas-de-pinho\public\apple-touch-icon.png", "PNG"
 )
 
 print("photos:", len(photos))

@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://tabuasdepinho.com.br/sitemap.xml

@@ -106,5 +106,13 @@ const schema = {
         ></path>
       </svg>
     </a>
+    <script>
+      const waFloat = document.querySelector('.wa-float');
+      const updateWaFloat = () => {
+        waFloat?.classList.toggle('is-visible', window.scrollY > 420);
+      };
+      updateWaFloat();
+      window.addEventListener('scroll', updateWaFloat, { passive: true });
+    </script>
   </body>
 </html>

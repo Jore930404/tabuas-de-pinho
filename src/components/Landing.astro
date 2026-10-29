@@ -14,7 +14,7 @@ type Photo = (typeof photosData)[number];
 const photos = Object.fromEntries(photosData.map((p) => [p.slug, p])) as Record<string, Photo>;
 
 const heroPhoto = photos['aparador'];
-const aboutPhoto = photos['bar'];
+const aboutPhoto = photos['jonnatan'];
 const galleryItems = t.gallery.items
   .map((item) => ({ ...item, photo: photos[item.slug] }))
   .filter((item) => Boolean(item.photo));
@@ -30,8 +30,8 @@ const galleryMessage =
     : '¡Hola! Vi los proyectos del sitio y quisiera un presupuesto.';
 
 const heroSizes = '(max-width: 1020px) 92vw, 44vw';
-const aboutSizes = '(max-width: 1020px) 90vw, 38vw';
-const gallerySizes = '(max-width: 520px) 92vw, (max-width: 900px) 45vw, 340px';
+const aboutSizes = '160px';
+const gallerySizes = '(max-width: 520px) 92vw, (max-width: 900px) 45vw, (max-width: 1280px) 30vw, 23vw';
 ---
 
 <main id="conteudo">
@@ -92,6 +92,7 @@ const gallerySizes = '(max-width: 520px) 92vw, (max-width: 900px) 45vw, 340px';
       <div class="section-head reveal">
         <p class="eyebrow">{t.services.eyebrow}</p>
         <h2 id="services-title">{t.services.title}</h2>
+        <p class="lead">{t.services.lead}</p>
       </div>
 
       <div class="cards">
@@ -122,7 +123,9 @@ const gallerySizes = '(max-width: 520px) 92vw, (max-width: 900px) 45vw, 340px';
           <Icon name="arrow" size={17} />
         </a>
       </div>
+    </div>
 
+    <div class="gallery-bleed">
       <div class="masonry">
         {galleryItems.map((item) => (
           <button
@@ -177,24 +180,22 @@ const gallerySizes = '(max-width: 520px) 92vw, (max-width: 900px) 45vw, 340px';
 
   <!-- ABOUT -->
   <section id="atelie" class="section" aria-labelledby="about-title">
-    <div class="container about-grid">
-      <figure class="about-media reveal">
-        <div class="about-card">
-          <picture>
-            <source type="image/webp" srcset={aboutPhoto.webpset} sizes={aboutSizes} />
-            <img
-              src={aboutPhoto.src}
-              srcset={aboutPhoto.srcset}
-              sizes={aboutSizes}
-              width={aboutPhoto.width}
-              height={aboutPhoto.height}
-              alt={t.about.imageAlt}
-              loading="lazy"
-              decoding="async"
-            />
-          </picture>
-        </div>
-        <span class="about-tag">Neves · Ponta Grossa</span>
+    <div class="container about-single">
+      <figure class="about-avatar reveal">
+        <picture>
+          <source type="image/webp" srcset={aboutPhoto.webpset} sizes={aboutSizes} />
+          <img
+            src={aboutPhoto.src}
+            srcset={aboutPhoto.srcset}
+            sizes={aboutSizes}
+            width={aboutPhoto.width}
+            height={aboutPhoto.height}
+            alt={t.about.imageAlt}
+            loading="lazy"
+            decoding="async"
+          />
+        </picture>
+        <figcaption>{t.about.imageTag}</figcaption>
       </figure>
 
       <div class="about-copy reveal">
@@ -383,7 +384,13 @@ const gallerySizes = '(max-width: 520px) 92vw, (max-width: 900px) 45vw, 340px';
     }
 
     const number = form.dataset.phone ?? '';
-    window.open(`https://wa.me/${number}?text=${encodeURIComponent(text)}`, '_blank', 'noopener');
+    const waUrl = `https://wa.me/${number}?text=${encodeURIComponent(text)}`;
+    const popup = window.open(waUrl, '_blank');
+    if (popup) {
+      popup.opener = null;
+    } else {
+      window.location.href = waUrl;
+    }
   });
 
   const revealElements = document.querySelectorAll<HTMLElement>('.reveal');

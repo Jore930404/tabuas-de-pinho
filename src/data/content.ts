@@ -66,6 +66,7 @@ const pt = {
   services: {
     eyebrow: 'O que fazemos',
     title: 'Três frentes, o mesmo cuidado com a madeira',
+    lead: 'Cada projeto começa com uma conversa e termina com a madeira no lugar certo. Trabalhamos o pino maciço do desenho à montagem.',
     items: [
       {
         icon: 'wardrobe',
@@ -92,7 +93,6 @@ const pt = {
     zoom: 'Ampliar foto',
     close: 'Fechar',
     items: [
-      { slug: 'aparador', caption: 'Aparador com gavetas' },
       { slug: 'cama', caption: 'Cama em pino maciço' },
       { slug: 'bar', caption: 'Balcão de bar' },
       { slug: 'mesa', caption: 'Mesa auxiliar' },
@@ -138,7 +138,8 @@ const pt = {
       { value: 'Neves', label: 'Ponta Grossa – PR' },
       { value: 'Com agendamento', label: 'visitas ao ateliê' },
     ],
-    imageAlt: 'Balcão de bar em pino maciço no ateliê',
+    imageAlt: 'Jonathan Louis, à frente do ateliê da Tábuas de Pinho',
+    imageTag: 'Jonathan Louis · mestre carpinteiro',
     cta: 'Agendar uma visita',
   },
   materials: {
@@ -253,6 +254,7 @@ const es: typeof pt = {
   services: {
     eyebrow: 'Qué hacemos',
     title: 'Tres frentes, el mismo cuidado con la madera',
+    lead: 'Cada proyecto empieza con una conversación y termina con la madera en su lugar. Trabajamos el pino macizo del diseño al montaje.',
     items: [
       {
         icon: 'wardrobe',
@@ -279,7 +281,6 @@ const es: typeof pt = {
     zoom: 'Ampliar foto',
     close: 'Cerrar',
     items: [
-      { slug: 'aparador', caption: 'Aparador con cajones' },
       { slug: 'cama', caption: 'Cama en pino macizo' },
       { slug: 'bar', caption: 'Barra de bar' },
       { slug: 'mesa', caption: 'Mesa auxiliar' },
@@ -325,7 +326,8 @@ const es: typeof pt = {
       { value: 'Neves', label: 'Ponta Grossa – PR' },
       { value: 'Con cita previa', label: 'visitas al taller' },
     ],
-    imageAlt: 'Barra de bar en pino macizo en el taller',
+    imageAlt: 'Jonathan Louis, al frente del taller de Tábuas de Pinho',
+    imageTag: 'Jonathan Louis · maestro carpintero',
     cta: 'Agendar una visita',
   },
   materials: {

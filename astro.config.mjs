@@ -1,5 +1,8 @@
+const siteUrl =
+  process.env.SITE_URL ?? 'https://tabuas-de-pinho.jlaffitteg.workers.dev';
+
 export default {
-  site: 'https://tabuasdepinho.com.br',
+  site: siteUrl,
   build: {
     inlineStylesheets: 'auto',
   },

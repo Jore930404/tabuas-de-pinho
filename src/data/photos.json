@@ -88,5 +88,15 @@
     "width": 1040,
     "height": 780,
     "ratio": 1.3333
+  },
+  {
+    "slug": "jonnatan",
+    "src": "/img/jonnatan-1280.jpg",
+    "srcset": "/img/jonnatan-640.jpg 640w, /img/jonnatan-1280.jpg 720w",
+    "webp": "/img/jonnatan-1280.webp",
+    "webpset": "/img/jonnatan-640.webp 640w, /img/jonnatan-1280.webp 720w",
+    "width": 720,
+    "height": 710,
+    "ratio": 1.0141
   }
 ]

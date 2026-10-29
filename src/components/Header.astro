@@ -67,20 +67,36 @@ const quoteHref = whatsappLink(t.contact.whatsappMessage);
   window.addEventListener('scroll', onScroll, { passive: true });
 
   if (toggle && nav) {
-    toggle.addEventListener('click', () => {
-      const open = nav.dataset.open === 'true';
-      nav.dataset.open = String(!open);
-      toggle.setAttribute('aria-expanded', String(!open));
+    const setOpen = (open: boolean) => {
+      nav.dataset.open = String(open);
+      toggle.setAttribute('aria-expanded', String(open));
       toggle.setAttribute(
         'aria-label',
-        open ? toggle.dataset.labelOpen ?? '' : toggle.dataset.labelClose ?? '',
+        open ? toggle.dataset.labelClose ?? '' : toggle.dataset.labelOpen ?? '',
       );
+    };
+
+    toggle.addEventListener('click', () => {
+      setOpen(nav.dataset.open !== 'true');
     });
 
     nav.addEventListener('click', (event) => {
       if ((event.target as HTMLElement).closest('a')) {
-        nav.dataset.open = 'false';
-        toggle.setAttribute('aria-expanded', 'false');
+        setOpen(false);
+      }
+    });
+
+    document.addEventListener('click', (event) => {
+      if (nav.dataset.open !== 'true') return;
+      const target = event.target as Node;
+      if (nav.contains(target) || toggle.contains(target)) return;
+      setOpen(false);
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && nav.dataset.open === 'true') {
+        setOpen(false);
+        toggle.focus();
       }
     });
   }

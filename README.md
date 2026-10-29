@@ -39,7 +39,7 @@ public/
   img/          Fotos optimizadas
   favicon.svg   Icono de la marca
   og.jpg        Imagen para redes (1200×630)
-  robots.txt / sitemap.xml
+  (robots.txt y sitemap.xml se generan desde src/pages)
 brand/          Archivos de marca (icono final y propuestas)
 scripts/        Optimización de fotos y auditoría de enlaces
 ```
@@ -49,7 +49,7 @@ scripts/        Optimización de fotos y auditoría de enlaces
 - Textos, servicios, FAQ, datos de contacto e idiomas: `src/data/content.ts`.
 - Fotos de la galería y textos alternativos: `src/components/Landing.astro` + `src/data/photos.json`.
 - Fotografías nuevas: agregarlas a `scripts/process_photos.py` y ejecutar el script con Python + Pillow.
-- Dominio: `astro.config.mjs` (`site`) y `public/sitemap.xml` (hoy usan `tabuasdepinho.com.br` como marcador).
+- Dominio: `astro.config.mjs` (`site`). Hoy apunta a `https://tabuas-de-pinho.jlaffitteg.workers.dev`; robots y sitemap se generan desde esa URL. Para un dominio propio, cambiá el `site` o definí la variable `SITE_URL` en el build.
 
 ## Datos del negocio cargados
 
@@ -61,7 +61,7 @@ scripts/        Optimización de fotos y auditoría de enlaces
 
 ## Pendientes para completar
 
-- Dominio definitivo (hoy es un marcador).
+- Dominio definitivo (hoy se publica en `tabuas-de-pinho.jlaffitteg.workers.dev`).
 - Horarios de atención, correo e Instagram (no estaban en la tarjeta).
 - Testimonios reales, si se quieren mostrar.
 - Reemplazar fotos por otras de mejor resolución cuando estén disponibles.
