@@ -1025,7 +1025,7 @@ em {
   border-radius: 12px;
   background: var(--white);
   color: var(--ink);
-  caret-color: var(--green);
+  caret-color: #1f4527;
   font: inherit;
   font-size: 0.95rem;
   transition: border-color 0.2s var(--ease), box-shadow 0.2s var(--ease);
